@@ -33,6 +33,9 @@ const StyledSpan = styled.span`
 
 const CartIcon = styled.span`
   padding: 0 2em;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Navbar = () => {
