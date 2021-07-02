@@ -2,6 +2,7 @@ import React from "react";
 
 import { FiShoppingCart } from "react-icons/fi";
 import styled from "styled-components";
+import { CartWidget } from "./CartWidget";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const NavBarItem = styled.div`
   text-align: center;
   color: black;
   font-size: 1.4em;
-  padding: 1.2em 2em;
+  padding: 0.4em 1.8em;
   &:hover {
     background-color: #d6d6d63b;
     cursor: pointer;
@@ -43,11 +44,13 @@ export const Navbar = () => {
     <NavbarContainer>
       <StyledSpan>My E-commerce</StyledSpan>
       <ItemsContainer>
-        <NavBarItem>Home</NavBarItem>
-        <NavBarItem>Productos</NavBarItem>
-        <CartIcon>
-          <FiShoppingCart size={20} />
-        </CartIcon>
+        <NavBarItem>
+          <p>Home</p>
+        </NavBarItem>
+        <NavBarItem>
+          <p>Productos</p>
+        </NavBarItem>
+        <CartWidget />
       </ItemsContainer>
     </NavbarContainer>
   );
