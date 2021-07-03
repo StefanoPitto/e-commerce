@@ -5,7 +5,7 @@ export const App = () => {
   return (
     <div>
       <Navbar />
-      <ItemListContainer info={"Hola mundo!"} />
+      <ItemListContainer info={"Bienvenidos a mi E-commerce"} />
     </div>
   );
 };

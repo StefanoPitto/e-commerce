@@ -19,8 +19,9 @@ const ItemsContainer = styled.div`
 const NavBarItem = styled.div`
   text-align: center;
   color: black;
-  font-size: 1.4em;
-  padding: 0.4em 1.8em;
+  font-size: 1.2em;
+  padding: 0.4em 1.7em;
+  min-width: 205px;
   &:hover {
     background-color: #d6d6d63b;
     cursor: pointer;
@@ -49,6 +50,9 @@ export const Navbar = () => {
         </NavBarItem>
         <NavBarItem>
           <p>Productos</p>
+        </NavBarItem>
+        <NavBarItem>
+          <p>Sobre Nosotros</p>
         </NavBarItem>
         <CartWidget />
       </ItemsContainer>
