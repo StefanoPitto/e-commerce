@@ -1,8 +1,17 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 
+const CartContainer = styled.div`
+  padding: 0 2em;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 export const CartWidget = () => {
-  return;
-  <FiShoppingCart size={20} />;
+  return (
+    <CartContainer>
+      <FiShoppingCart size={20} />
+    </CartContainer>
+  );
 };
