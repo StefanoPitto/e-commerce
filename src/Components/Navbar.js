@@ -1,6 +1,5 @@
 import React from "react";
 
-import { FiShoppingCart } from "react-icons/fi";
 import styled from "styled-components";
 import { CartWidget } from "./CartWidget";
 
@@ -31,13 +30,6 @@ const NavBarItem = styled.div`
 const StyledSpan = styled.span`
   align-self: center;
   margin-left: 2em;
-`;
-
-const CartIcon = styled.span`
-  padding: 0 2em;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export const Navbar = () => {
