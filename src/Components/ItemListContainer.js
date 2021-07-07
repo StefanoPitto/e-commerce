@@ -15,7 +15,7 @@ const ItemContainer = styled.div`
 const ItemListContainer = (props) => {
   return (
     <ItemContainer>
-      <ItemCount></ItemCount>
+      <ItemCount maxStock="5"></ItemCount>
       <ButtonContainer>
         <Button variant="contained">Agregar al carrito</Button>
       </ButtonContainer>

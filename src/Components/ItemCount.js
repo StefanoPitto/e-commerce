@@ -13,10 +13,13 @@ const StyledP = styled.p`
   text-align: center;
 `;
 
-const ItemCount = () => {
+const ItemCount = (props) => {
+  const stock = parseInt(props.maxStock);
   const [counter, setCounter] = useState(0);
   const increase = () => {
-    setCounter(counter + 1);
+    if (counter < stock) {
+      setCounter(counter + 1);
+    }
   };
   const decrease = () => {
     if (counter > 0) {
