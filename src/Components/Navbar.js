@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { CartWidget } from "./CartWidget";
+import CartWidget from "./CartWidget";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const StyledSpan = styled.span`
   margin-left: 2em;
 `;
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <NavbarContainer>
       <StyledSpan>My E-commerce</StyledSpan>
@@ -51,3 +51,5 @@ export const Navbar = () => {
     </NavbarContainer>
   );
 };
+
+export default Navbar;

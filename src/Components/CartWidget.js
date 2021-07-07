@@ -8,10 +8,12 @@ const CartContainer = styled.div`
     cursor: pointer;
   }
 `;
-export const CartWidget = () => {
+const CartWidget = () => {
   return (
     <CartContainer>
       <FiShoppingCart size={20} />
     </CartContainer>
   );
 };
+
+export default CartWidget;

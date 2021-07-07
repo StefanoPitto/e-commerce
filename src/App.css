@@ -2,4 +2,5 @@
 
 body {
   font-family: "Ubuntu", sans-serif;
+  user-select: none;
 }

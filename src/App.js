@@ -1,7 +1,7 @@
 import "./App.css";
-import { Navbar } from "./Components/Navbar";
-import { ItemListContainer } from "./Components/ItemListContainer";
-export const App = () => {
+import Navbar from "./Components/Navbar";
+import ItemListContainer from "./Components/ItemListContainer";
+const App = () => {
   return (
     <div>
       <Navbar />
