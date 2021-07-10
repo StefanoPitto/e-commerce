@@ -1,0 +1,16 @@
+[
+  {
+    "productId": 1,
+    "productName": "asd",
+    "productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+    "productPrice": "asd",
+    "productType": "asd"
+  },
+  {
+    "productId": 2,
+    "productName": "asd",
+    "productImage": "asd",
+    "productPrice": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+    "productType": "asd"
+  }
+]

@@ -1,24 +1,44 @@
 import React from "react";
 import styled from "styled-components";
-import ItemCount from "./ItemCount";
-import Button from "@material-ui/core/Button";
-
-const ButtonContainer = styled.div`
-  text-align: center;
-`;
+import ItemList from "./ItemList";
 
 const ItemContainer = styled.div`
   max-width: fit-content;
   margin: 0 auto;
 `;
 
+const Products = [
+  {
+    productId: 1,
+    productName: "asd",
+    productImage:
+      "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+    productPrice: 1400,
+    productType: "asd",
+  },
+  {
+    productId: 2,
+    productName: "asd",
+    productImage:
+      "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+    productPrice: 1900,
+    productType: "asd",
+  },
+];
+
 const ItemListContainer = (props) => {
+  const getProducts = async () => {
+    let productos = await fetch("../Products.json");
+    let datos = await productos.json();
+    console.log(datos);
+    console.log("aca");
+    return datos;
+  };
+  console.log(getProducts());
+
   return (
     <ItemContainer>
-      <ItemCount maxStock="5"></ItemCount>
-      <ButtonContainer>
-        <Button variant="contained">Agregar al carrito</Button>
-      </ButtonContainer>
+      <ItemList products={Products} />
     </ItemContainer>
   );
 };

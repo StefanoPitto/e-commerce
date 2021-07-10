@@ -22,7 +22,7 @@ const NavBarItem = styled.div`
   padding: 0.4em 1.7em;
   min-width: 205px;
   &:hover {
-    background-color: #d6d6d63b;
+    background-color: rgba(116, 127, 141, 0.08);
     cursor: pointer;
   }
 `;
