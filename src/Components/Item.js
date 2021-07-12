@@ -25,7 +25,7 @@ const StyledDiv = styled.div`
 
 const StyledCard = styled(Card)({
   margin: "20px 20px",
-  padding: "30px 40px",
+  padding: "20px 40px",
 });
 
 const Item = (props) => {

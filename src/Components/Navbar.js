@@ -20,6 +20,7 @@ const NavBarItem = styled.div`
   color: black;
   font-size: 1.2em;
   padding: 0.4em 1.7em;
+  height: 100%;
   min-width: 205px;
   &:hover {
     background-color: rgba(116, 127, 141, 0.08);
@@ -27,15 +28,21 @@ const NavBarItem = styled.div`
   }
 `;
 
-const StyledSpan = styled.span`
+const StyledDiv = styled.div`
   align-self: center;
   margin-left: 2em;
+  img {
+    width: 64px;
+    height: 64px;
+  }
 `;
 
 const Navbar = () => {
   return (
     <NavbarContainer>
-      <StyledSpan>My E-commerce</StyledSpan>
+      <StyledDiv>
+        <img src="NavBarLogo.png" alt="" />
+      </StyledDiv>
       <ItemsContainer>
         <NavBarItem>
           <p>Home</p>

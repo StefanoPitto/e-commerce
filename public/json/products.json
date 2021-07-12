@@ -1,13 +1,13 @@
 [
   {
-    "productId": 1,
+    "productId": "1",
     "productName": "Zapatillas",
     "productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
     "productPrice": 2000,
     "productType": "asd"
   },
   {
-    "productId": 2,
+    "productId": "2",
     "productName": "Zapatillas",
     "productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
     "productPrice": 4000,

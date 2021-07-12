@@ -12,11 +12,7 @@ const ItemList = (props) => {
   return (
     <StyledContainer>
       {props.products.map((element) => {
-        return (
-          <>
-            <Item key={element.productId} itemInfo={element} />
-          </>
-        );
+        return <Item key={element.productId} itemInfo={element} />;
       })}
     </StyledContainer>
   );
