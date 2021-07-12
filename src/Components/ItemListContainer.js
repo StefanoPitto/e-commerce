@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ItemList from "./ItemList";
-import { CircularProgress } from "@material-ui/core";
+import { LinearProgress } from "@material-ui/core";
 const ItemContainer = styled.div`
   max-width: fit-content;
   margin: 0 auto;
@@ -10,8 +10,10 @@ const ItemContainer = styled.div`
   align-items: center;
 `;
 
-const Loading = styled(CircularProgress)`
-  color: black;
+const Loading = styled(LinearProgress)`
+  width: 2000px;
+  height: 4px;
+  background-color: black;
 `;
 
 const ItemListContainer = (props) => {
