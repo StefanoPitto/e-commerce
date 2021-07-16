@@ -1,12 +1,22 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import ItemListContainer from "./Components/ItemListContainer";
+import ItemDetailContainer from "./Components/ItemDetailContainer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 const App = () => {
   return (
-    <div>
+    <Router>
       <Navbar />
-      <ItemListContainer info={"Bienvenidos a mi E-commerce"} />
-    </div>
+      <Switch>
+        <Route path="/products/:itemID">
+          <ItemDetailContainer />
+        </Route>
+        <Route path="/products">
+          <ItemListContainer />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 

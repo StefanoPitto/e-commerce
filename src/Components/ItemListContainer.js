@@ -20,7 +20,7 @@ const ItemListContainer = (props) => {
   const [products, setProducts] = useState();
   useEffect(() => {
     const getProducts = async () => {
-      let productos = await fetch("./json/products.json");
+      let productos = await fetch("/json/products.json");
       let datos = await productos.json();
       setProducts(datos);
     };

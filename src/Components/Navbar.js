@@ -2,12 +2,18 @@ import React from "react";
 
 import styled from "styled-components";
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
   border-bottom: solid 1px #00000085;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 const ItemsContainer = styled.div`
@@ -41,17 +47,23 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <StyledDiv>
-        <img src="NavBarLogo.png" alt="" />
+        <img src="/NavBarLogo.png" alt="" />
       </StyledDiv>
       <ItemsContainer>
         <NavBarItem>
-          <p>Home</p>
+          <Link to="/">
+            <p>Home</p>
+          </Link>
         </NavBarItem>
         <NavBarItem>
-          <p>Productos</p>
+          <Link to="/products">
+            <p>Productos</p>
+          </Link>
         </NavBarItem>
         <NavBarItem>
-          <p>Sobre Nosotros</p>
+          <Link to="/about-us">
+            <p>Sobre Nosotros</p>
+          </Link>
         </NavBarItem>
         <CartWidget />
       </ItemsContainer>
