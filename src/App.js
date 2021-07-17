@@ -9,11 +9,11 @@ const App = () => {
     <Router>
       <Navbar />
       <Switch>
-        <Route path="/products/:itemID">
-          <ItemDetailContainer />
-        </Route>
-        <Route path="/products">
+        <Route exact path="/products">
           <ItemListContainer />
+        </Route>
+        <Route exact path="/products/item/:itemID">
+          <ItemDetailContainer />
         </Route>
       </Switch>
     </Router>

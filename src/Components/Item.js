@@ -41,7 +41,7 @@ const Item = (props) => {
   return (
     <StyledCard>
       <StyledDiv>
-        <Link to={`/products/${props.itemInfo.productId}`}>
+        <Link to={`/products/item/${props.itemInfo.productId}`}>
           <h1>{props.itemInfo.productName}</h1>
           <img src={props.itemInfo.productImage} alt="" />
           <p>{`$ ${props.itemInfo.productPrice}`}</p>

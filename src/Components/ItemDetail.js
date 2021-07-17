@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Card, Button } from "@material-ui/core";
 import ItemCount from "./ItemCount";
-import { IoIosArrowRoundBack } from "react-icons/io";
-
 const StyledContainer = styled(Card)`
   max-width: 900px;
   display: flex;

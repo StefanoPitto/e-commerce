@@ -17,13 +17,12 @@ const ItemDetailContainer = (props) => {
   useEffect(() => {
     const getItem = async () => {
       let products = await fetch("/json/products.json");
-      let datos = await products.json();
-      let encontre = false;
-      console.log(datos);
-      for (let i = 0; i < datos.length && !encontre; i++) {
-        if (datos[i].productId === itemID) {
-          setItem(datos[i]);
-          encontre = true;
+      let data = await products.json();
+      let found = false;
+      for (let i = 0; i < data.length && !found; i++) {
+        if (data[i].productId === itemID) {
+          setItem(data[i]);
+          found = true;
         }
       }
     };
