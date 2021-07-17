@@ -27,8 +27,7 @@ const ItemDetailContainer = (props) => {
         }
       }
     };
-    const nashe = setTimeout(() => getItem(), 2000);
-    return () => clearTimeout(nashe);
+    setTimeout(() => getItem(), 2000);
   }, [itemID]);
 
   return <>{item === undefined ? <Loading /> : <ItemDetail info={item} />}</>;

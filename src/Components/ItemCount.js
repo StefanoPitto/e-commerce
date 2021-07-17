@@ -14,7 +14,7 @@ const StyledP = styled.p`
 `;
 
 const ItemCount = (props) => {
-  const stock = parseInt(props.maxStock);
+  const stock = props.maxStock;
   const [counter, setCounter] = useState(1);
   const increase = () => {
     if (counter < stock) {

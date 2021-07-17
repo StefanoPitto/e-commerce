@@ -22,15 +22,14 @@ const StyledDiv = styled.div`
   p {
     font-size: 16px;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledCard = styled(Card)`
   margin: 20px 20px;
   padding: 20px 40px;
-
-  &:hover {
-    cursor: pointer;
-  }
 
   a {
     text-decoration: none;
@@ -41,17 +40,17 @@ const StyledCard = styled(Card)`
 const Item = (props) => {
   return (
     <StyledCard>
-      <Link to={`/products/${props.itemInfo.productId}`}>
-        <StyledDiv>
+      <StyledDiv>
+        <Link to={`/products/${props.itemInfo.productId}`}>
           <h1>{props.itemInfo.productName}</h1>
           <img src={props.itemInfo.productImage} alt="" />
           <p>{`$ ${props.itemInfo.productPrice}`}</p>
-        </StyledDiv>
-        <ItemCount maxStock="5"></ItemCount>
-        <ButtonContainer>
-          <Button variant="contained">Agregar al carrito</Button>
-        </ButtonContainer>
-      </Link>
+        </Link>
+      </StyledDiv>
+      <ItemCount maxStock={props.itemInfo.maxStock}></ItemCount>
+      <ButtonContainer>
+        <Button variant="contained">Agregar al carrito</Button>
+      </ButtonContainer>
     </StyledCard>
   );
 };

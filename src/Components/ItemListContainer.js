@@ -11,7 +11,7 @@ const ItemContainer = styled.div`
 `;
 
 const Loading = styled(LinearProgress)`
-  width: 2000px;
+  width: 100vw;
   height: 4px;
   background-color: black;
 `;

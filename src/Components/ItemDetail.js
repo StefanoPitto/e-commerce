@@ -1,37 +1,46 @@
 import React from "react";
 import styled from "styled-components";
-import { Container, Button } from "@material-ui/core";
-import ItemCount from "./ItemCount"
+import { Card, Button } from "@material-ui/core";
+import ItemCount from "./ItemCount";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
-const StyledContainer = styled(Container)`
+const StyledContainer = styled(Card)`
   max-width: 900px;
-  border: 1px solid red;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction:row;
-
+  flex-wrap: wrap;
+  margin: 0 auto;
+  margin-top: 100px;
 `;
 
-const ImageDiv= styled.div`
-img{
-  width: 100%;
-}
+const ImageDiv = styled.div`
+  img {
+    width: 500px;
+    height: 500px;
+  }
 `;
 
-const ButtonsDiv= styled.div`
-  min-width: 200px;
+const InformationDiv = styled.div`
+  text-align: center;
+  min-width: 300px;
+  h1 {
+    font-size: 25px;
+  }
 `;
+
 const ItemDetail = (props) => {
   return (
     <StyledContainer>
       <ImageDiv>
-       <img src={`${props.info.productImage}`} />
-      </ImageDiv>      
-      <ButtonsDiv>
-      <ItemCount/>
-      <Button variant="contained">Agregar al carrito</Button>
-      </ButtonsDiv>    
+        <img src={props.info.productImage} alt="clothes" />
+      </ImageDiv>
+      <InformationDiv>
+        <h1>{props.info.productName}</h1>
+        <p>$ {props.info.productPrice}</p>
+        <ItemCount maxStock={props.info.maxStock} />
+        <Button variant="contained">Agregar al carrito</Button>
+      </InformationDiv>
     </StyledContainer>
   );
 };
