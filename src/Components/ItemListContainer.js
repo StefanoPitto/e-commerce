@@ -2,40 +2,56 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ItemList from "./ItemList";
 import { LinearProgress } from "@material-ui/core";
+import ProductNavBar from "./ProductsNavBar";
+import { useParams } from "react-router-dom";
+
 const ItemContainer = styled.div`
-  max-width: fit-content;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	max-width: fit-content;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const Loading = styled(LinearProgress)`
-  width: 100vw;
-  height: 4px;
-  background-color: black;
+	width: 100vw;
+	height: 4px;
+	background-color: #000000;
 `;
 
-const ItemListContainer = (props) => {
-  const [products, setProducts] = useState();
-  useEffect(() => {
-    const getProducts = async () => {
-      let productos = await fetch("/json/products.json");
-      let datos = await productos.json();
-      setProducts(datos);
-    };
-    setTimeout(() => getProducts(), 2000);
-  }, []);
+const StyledDiv = styled.div``;
 
-  return (
-    <ItemContainer>
-      {products === undefined ? (
-        <Loading></Loading>
-      ) : (
-        <ItemList products={products}> </ItemList>
-      )}
-    </ItemContainer>
-  );
+const ItemListContainer = (props) => {
+	const { categoryID } = useParams();
+	const [products, setProducts] = useState();
+	useEffect(() => {
+		const getProducts = async () => {
+			let productos = await fetch("/json/products.json");
+			let responseProducts = await productos.json();
+			if (categoryID !== "todo") {
+				let newArray = responseProducts.filter(
+					(product) => product.productType === categoryID
+				);
+				setProducts(newArray);
+			} else {
+				setProducts(responseProducts);
+			}
+		};
+		getProducts();
+	}, [categoryID]);
+
+	return (
+		<ItemContainer>
+			{products === undefined ? (
+				<Loading color="secondary"></Loading>
+			) : (
+				<StyledDiv>
+					<ProductNavBar />
+					<ItemList products={products}> </ItemList>
+				</StyledDiv>
+			)}
+		</ItemContainer>
+	);
 };
 
 export default ItemListContainer;

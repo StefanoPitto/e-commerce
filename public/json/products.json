@@ -1,18 +1,76 @@
 [
-  {
-    "productId": "1",
-    "productName": "Zapatillas",
-    "productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
-    "productPrice": 2000,
-    "productType": "asd",
-    "maxStock": 5
-  },
-  {
-    "productId": "2",
-    "productName": "Zapatillas",
-    "productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
-    "productPrice": 4000,
-    "productType": "asd",
-    "maxStock": 10
-  }
+	{
+		"productId": "1",
+		"productName": "Zapatillas",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 2000,
+		"productType": "calzado",
+		"maxStock": 5,
+		"gender": "unisex"
+	},
+	{
+		"productId": "2",
+		"productName": "Zapatillas",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 4000,
+		"productType": "calzado",
+		"maxStock": 10,
+		"gender": "unisex"
+	},
+
+	{
+		"productId": "3",
+		"productName": "Pantalon",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 2000,
+		"productType": "pantalones",
+		"maxStock": 5,
+		"gender": "unisex"
+	},
+	{
+		"productId": "4",
+		"productName": "Pantalon",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 4000,
+		"productType": "pantalones",
+		"maxStock": 10,
+		"gender": "unisex"
+	},
+
+	{
+		"productId": "5",
+		"productName": "Buzo",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 2000,
+		"productType": "buzos",
+		"maxStock": 5,
+		"gender": "unisex"
+	},
+	{
+		"productId": "6",
+		"productName": "Buzo",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 4000,
+		"productType": "buzos",
+		"maxStock": 10,
+		"gender": "unisex"
+	},
+	{
+		"productId": "7",
+		"productName": "Traje",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 2000,
+		"productType": "trajes",
+		"maxStock": 5,
+		"gender": "unisex"
+	},
+	{
+		"productId": "8",
+		"productName": "Traje",
+		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productPrice": 4000,
+		"productType": "trajes",
+		"maxStock": 10,
+		"gender": "unisex"
+	}
 ]

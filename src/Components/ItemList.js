@@ -3,18 +3,19 @@ import styled from "styled-components";
 import Item from "./Item";
 
 const StyledContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
 `;
 
 const ItemList = (props) => {
-  return (
-    <StyledContainer>
-      {props.products.map((element) => {
-        return <Item key={element.productId} itemInfo={element} />;
-      })}
-    </StyledContainer>
-  );
+	return (
+		<StyledContainer>
+			{props.products.map((element) => {
+				return <Item key={element.productId} itemInfo={element} />;
+			})}
+		</StyledContainer>
+	);
 };
 export default ItemList;
