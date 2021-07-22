@@ -24,13 +24,7 @@ const ProductNavBar = (props) => {
 	};
 
 	return (
-		<StyledTab
-			indicator={value ? true : true}
-			value={value}
-			variant="fullWidth"
-			centered
-			indicatorColor="primary"
-		>
+		<StyledTab value={value} variant="fullWidth" indicatorColor="primary">
 			<Link to="/products/todo">
 				<Tab label="Todo" onClick={() => handleClick(0, "todo")} />
 			</Link>

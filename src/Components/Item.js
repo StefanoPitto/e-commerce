@@ -15,6 +15,7 @@ const StyledDiv = styled.div`
 	img {
 		width: 250px;
 		height: 250px;
+		object-fit: contain;
 	}
 	h1 {
 		font-size: 20px;
@@ -28,6 +29,10 @@ const StyledDiv = styled.div`
 `;
 
 const StyledCard = styled(Card)`
+	width: 100%;
+	max-height: 520px;
+	height: 100%;
+	max-width: 350px;
 	margin: 20px 20px;
 	padding: 20px 40px;
 

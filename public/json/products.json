@@ -1,7 +1,7 @@
 [
 	{
 		"productId": "1",
-		"productName": "Zapatillas",
+		"productName": "Nike Air Jordan 1",
 		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
 		"productPrice": 2000,
 		"productType": "calzado",
@@ -10,8 +10,8 @@
 	},
 	{
 		"productId": "2",
-		"productName": "Zapatillas",
-		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productName": "Nike Air Force 1 '07 LV8",
+		"productImage": "https://i.postimg.cc/nhc60ckz/calzado-air-force-1-07-lv8-x-Kj-Nh7-removebg-preview-2.png",
 		"productPrice": 4000,
 		"productType": "calzado",
 		"maxStock": 10,
@@ -20,10 +20,10 @@
 
 	{
 		"productId": "3",
-		"productName": "Pantalon",
-		"productImage": "https://essential.vteximg.com.br/arquivos/ids/358254-1000-1000/306-6955_1.jpg",
+		"productName": "Nike Air Force 1 Cactus Jack",
+		"productImage": "https://i.postimg.cc/bw79dmsh/nike-air-force-1-cactus-jack-2019-travis-scott-lateral-removebg-preview.png",
 		"productPrice": 2000,
-		"productType": "pantalones",
+		"productType": "calzado",
 		"maxStock": 5,
 		"gender": "unisex"
 	},

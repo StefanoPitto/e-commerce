@@ -6,7 +6,7 @@ import ProductNavBar from "./ProductsNavBar";
 import { useParams } from "react-router-dom";
 
 const ItemContainer = styled.div`
-	max-width: fit-content;
+	max-width: 900px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
@@ -24,21 +24,21 @@ const StyledDiv = styled.div``;
 const ItemListContainer = (props) => {
 	const { categoryID } = useParams();
 	const [products, setProducts] = useState();
+	const getProducts = async () => {
+		let productos = await fetch("/json/products.json");
+		let responseProducts = await productos.json();
+		if (categoryID !== "todo") {
+			let newArray = responseProducts.filter(
+				(product) => product.productType === categoryID
+			);
+			setProducts(newArray);
+		} else {
+			setProducts(responseProducts);
+		}
+	};
 	useEffect(() => {
-		const getProducts = async () => {
-			let productos = await fetch("/json/products.json");
-			let responseProducts = await productos.json();
-			if (categoryID !== "todo") {
-				let newArray = responseProducts.filter(
-					(product) => product.productType === categoryID
-				);
-				setProducts(newArray);
-			} else {
-				setProducts(responseProducts);
-			}
-		};
 		getProducts();
-	}, [categoryID]);
+	});
 
 	return (
 		<ItemContainer>
