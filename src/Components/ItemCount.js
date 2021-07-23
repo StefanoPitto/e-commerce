@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiPlusSm, HiMinusSm } from "react-icons/hi";
 import styled from "styled-components";
 
@@ -6,6 +6,9 @@ const CounterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  span > svg :hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledP = styled.p`
@@ -14,28 +17,16 @@ const StyledP = styled.p`
 `;
 
 const ItemCount = (props) => {
-  const stock = props.maxStock;
-  const [counter, setCounter] = useState(1);
-  const increase = () => {
-    if (counter < stock) {
-      setCounter(counter + 1);
-    }
-  };
-  const decrease = () => {
-    if (counter > 1) {
-      setCounter(counter - 1);
-    }
-  };
   return (
     <CounterContainer>
       <span>
-        <HiMinusSm size={30} onClick={() => decrease()} />
+        <HiMinusSm size={30} onClick={() => props.onReduce()} />
       </span>
       <span>
-        <StyledP>{counter}</StyledP>
+        <StyledP>{props.counter}</StyledP>
       </span>
       <span>
-        <HiPlusSm size={30} onClick={() => increase()} />
+        <HiPlusSm size={30} onClick={() => props.onAdd()} />
       </span>
     </CounterContainer>
   );
