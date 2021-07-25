@@ -44,8 +44,11 @@ const Cart = () => {
         <StyledCard>
           {getCartItems().map((product) => {
             return (
-              <ProductContainer>
-                <img src={product.item.productImage} />
+              <ProductContainer key={product.item.productId}>
+                <img
+                  src={product.item.productImage}
+                  alt={product.item.productName}
+                />
                 <p>{product.item.productName}</p>
                 <p>{product.quantity}</p>
                 <p>${product.quantity * product.item.productPrice}</p>

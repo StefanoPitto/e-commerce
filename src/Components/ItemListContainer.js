@@ -25,7 +25,6 @@ const ItemListContainer = (props) => {
   const { categoryID } = useParams();
   const [products, setProducts] = useState();
   useEffect(() => {
-    let componentMounted = true;
     const getProducts = async () => {
       let productos = await fetch("/json/products.json");
       let responseProducts = await productos.json();
@@ -38,12 +37,9 @@ const ItemListContainer = (props) => {
         setProducts(responseProducts);
       }
     };
-    if (componentMounted) {
-      getProducts();
-    }
-    return () => {
-      componentMounted = false;
-    };
+
+    let timer = setTimeout(() => getProducts(), 2000);
+    return () => clearInterval(timer);
   });
 
   return (

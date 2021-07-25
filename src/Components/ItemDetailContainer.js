@@ -7,7 +7,7 @@ import styled from "styled-components";
 const Loading = styled(LinearProgress)`
   width: 2000px;
   height: 4px;
-  background-color: gray;
+  background-color: #7a7373c5;
 `;
 
 const ItemDetailContainer = (props) => {
@@ -26,7 +26,9 @@ const ItemDetailContainer = (props) => {
         }
       }
     };
-    setTimeout(() => getItem(), 2000);
+
+    let timer = setTimeout(() => getItem(), 2000);
+    return () => clearInterval(timer);
   }, [itemID]);
 
   return <>{item === undefined ? <Loading /> : <ItemDetail info={item} />}</>;
