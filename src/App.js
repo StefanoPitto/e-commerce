@@ -2,15 +2,17 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 import ItemListContainer from "./Components/ItemListContainer";
 import ItemDetailContainer from "./Components/ItemDetailContainer";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import AboutUs from "./Components/AboutUs";
+import Home from "./Components/Home";
+import CartContextProvider from "./Components/CartContextProvider";
+import Cart from "./Components/Cart";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import AboutUs from "./Components/AboutUs";
-import Home from "./Components/Home";
 const theme = createTheme({
   palette: {
     primary: {
@@ -27,27 +29,31 @@ const theme = createTheme({
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/products/:categoryID">
-            <ItemListContainer />
-          </Route>
-          <Route exact path="/products/:categoryID/item/:itemID">
-            <ItemDetailContainer />
-          </Route>
-          <Route exact path="/about-us">
-            <AboutUs />
-          </Route>
-          <Route exact path="/cart"></Route>
-        </Switch>
-        <Redirect to="/" />
-      </Router>
-    </ThemeProvider>
+    <CartContextProvider>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/products/:categoryID">
+              <ItemListContainer />
+            </Route>
+            <Route exact path="/products/:categoryID/item/:itemID">
+              <ItemDetailContainer />
+            </Route>
+            <Route exact path="/about-us">
+              <AboutUs />
+            </Route>
+            <Route exact path="/cart">
+              <Cart />
+            </Route>
+          </Switch>
+          <Redirect to="/" />
+        </Router>
+      </ThemeProvider>
+    </CartContextProvider>
   );
 };
 

@@ -7,7 +7,7 @@ import styled from "styled-components";
 const Loading = styled(LinearProgress)`
   width: 2000px;
   height: 4px;
-  background-color: black;
+  background-color: gray;
 `;
 
 const ItemDetailContainer = (props) => {

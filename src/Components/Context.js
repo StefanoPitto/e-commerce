@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
-const context = createContext();
+const Context = createContext();
 
-export const { ContextProvider } = context;
+export const { Provider } = Context;
 
 export default Context;

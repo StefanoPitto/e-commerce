@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { Card, Button } from "@material-ui/core";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
+import Context from "./Context";
 
 const StyledContainer = styled(Card)`
   max-width: 900px;
@@ -54,6 +55,7 @@ const StyledButton = styled(Button)`
 `;
 
 const ItemDetail = (props) => {
+  const { addItem } = useContext(Context);
   const [counter, setCounter] = useState();
   const increase = () => {
     if (counter === undefined) setCounter(1);
@@ -67,6 +69,12 @@ const ItemDetail = (props) => {
     }
   };
 
+  const addItemToCart = () => {
+    if (counter > 0) {
+      addItem({ ...props.info }, counter); //Envío toda la información del item y la cantidad que deseo agregar.
+    }
+  };
+
   return (
     <StyledContainer>
       <ImageDiv>
@@ -77,7 +85,9 @@ const ItemDetail = (props) => {
         <p>{props.info.productDescription}</p>
         <p>$ {props.info.productPrice}</p>
         <ItemCount onAdd={increase} onReduce={decrease} counter={counter} />
-        <Button variant="contained">Agregar al carrito</Button>
+        <Button variant="contained" onClick={addItemToCart}>
+          Agregar al carrito
+        </Button>
         {counter === undefined ? (
           <></>
         ) : (
