@@ -1,4 +1,3 @@
-import "./App.css";
 import Navbar from "./Components/Navbar";
 import ItemListContainer from "./Components/ItemListContainer";
 import ItemDetailContainer from "./Components/ItemDetailContainer";
@@ -7,12 +6,23 @@ import AboutUs from "./Components/AboutUs";
 import Home from "./Components/Home";
 import CartContextProvider from "./Components/CartContextProvider";
 import Cart from "./Components/Cart";
+import { createGlobalStyle } from "styled-components";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+
+const GlobalStyles = createGlobalStyle`
+  body {
+    @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+    font-family: "Ubuntu", sans-serif;
+    user-select: none;
+    overflow-y: scroll;
+  }
+`;
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -30,6 +40,7 @@ const theme = createTheme({
 const App = () => {
   return (
     <CartContextProvider>
+      <GlobalStyles />
       <ThemeProvider theme={theme}>
         <Router>
           <Navbar />
@@ -49,8 +60,10 @@ const App = () => {
             <Route exact path="/cart">
               <Cart />
             </Route>
+            <Route>
+              <Home />
+            </Route>
           </Switch>
-          <Redirect to="/" />
         </Router>
       </ThemeProvider>
     </CartContextProvider>

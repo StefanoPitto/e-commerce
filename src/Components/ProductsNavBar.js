@@ -3,7 +3,6 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
 const StyledTab = styled(Tabs)`
   &:focus {
     background-color: red;
@@ -24,7 +23,7 @@ const ProductNavBar = (props) => {
   };
 
   return (
-    <StyledTab value={value} indicatorColor="primary">
+    <StyledTab value={value} indicatorColor="primary" textColor="primary">
       <Link to="/products/todo">
         <Tab label="Todo" onClick={() => handleClick(0, "todo")} />
       </Link>

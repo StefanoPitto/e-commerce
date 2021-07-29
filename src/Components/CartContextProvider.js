@@ -3,6 +3,7 @@ import { Provider } from "./Context";
 
 const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [itemsQuantity, setItemsQuantity] = useState(0);
 
   const addItem = (item, quantity) => {
     let newArray = cartItems;
@@ -13,15 +14,19 @@ const CartContextProvider = ({ children }) => {
         if (newArray[i].quantity + quantity > newArray[i].item.maxStock) {
           //En caso de pasarme de la cantidad máxima permitida asigno el máximo valor posible viendo de no pasar el maxStock.
           newArray[i].quantity = newArray[i].item.maxStock;
+          setItemsQuantity(
+            itemsQuantity + newArray[i].item.maxStock - newArray[i].quantity //Le sumo la cantidad que estoy agregando para no pasarme del máximo.
+          );
         } else {
-          console.log("Acá " + newArray[i].quantity);
           newArray[i].quantity = newArray[i].quantity + quantity; //En caso de que ya haya un item dentro del carrito, le sumo la cantidad nueva deseada.
+          setItemsQuantity(itemsQuantity + quantity);
         }
         found = true;
       }
     }
     if (!found) {
       newArray.push({ item: { ...item }, quantity: quantity }); //En caso de que no lo haya encontrado en el arreglo lo agrego al nuevo arreglo.
+      setItemsQuantity(itemsQuantity + quantity);
     }
     setCartItems(newArray); //Seteo el nuevo array actualizado.
   };
@@ -33,21 +38,43 @@ const CartContextProvider = ({ children }) => {
       if (cartItems[i].item.productId !== id) {
         //Si el ID  es distinto entonces lo agrego a mi nuevo arreglo.
         newArray.push(cartItems[i]);
+      } else {
+        setItemsQuantity(itemsQuantity - cartItems[i].quantity);
       }
     }
     setCartItems(newArray);
+    console.log(cartItems);
+    console.log(cartItems.length);
   };
 
   const clearCart = () => {
     setCartItems([]); //Cambio el state por un Arreglo vacío.
+    setItemsQuantity(0);
   };
 
   const getCartItems = () => {
     return cartItems;
   };
 
+  const getTotalCost = () => {
+    let toReturn = 0;
+    cartItems.forEach((element) => {
+      toReturn = toReturn + element.quantity * element.item.productPrice;
+    });
+    return toReturn;
+  };
+
   return (
-    <Provider value={{ addItem, removeItem, clearCart, getCartItems }}>
+    <Provider
+      value={{
+        addItem,
+        removeItem,
+        clearCart,
+        getCartItems,
+        itemsQuantity,
+        getTotalCost,
+      }}
+    >
       {children}
     </Provider>
   );

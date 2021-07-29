@@ -5,9 +5,9 @@ import { LinearProgress } from "@material-ui/core";
 import styled from "styled-components";
 
 const Loading = styled(LinearProgress)`
-  width: 2000px;
+  width: 100vw;
   height: 4px;
-  background-color: #7a7373c5;
+  background-color: #000000;
 `;
 
 const ItemDetailContainer = (props) => {

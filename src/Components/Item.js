@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
@@ -58,4 +58,4 @@ const Item = (props) => {
   );
 };
 
-export default Item;
+export default memo(Item);

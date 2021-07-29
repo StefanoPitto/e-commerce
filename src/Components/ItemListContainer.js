@@ -37,22 +37,22 @@ const ItemListContainer = (props) => {
         setProducts(responseProducts);
       }
     };
-
-    let timer = setTimeout(() => getProducts(), 2000);
+    let timer = setTimeout(() => getProducts(), 500);
     return () => clearInterval(timer);
-  });
-
+  }, [categoryID]);
   return (
-    <ItemContainer>
+    <>
       {products === undefined ? (
         <Loading color="secondary"></Loading>
       ) : (
-        <StyledDiv>
-          <ProductNavBar />
-          <ItemList products={products}> </ItemList>
-        </StyledDiv>
+        <ItemContainer>
+          <StyledDiv>
+            <ProductNavBar />
+            <ItemList products={products}> </ItemList>
+          </StyledDiv>
+        </ItemContainer>
       )}
-    </ItemContainer>
+    </>
   );
 };
 
