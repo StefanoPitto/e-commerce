@@ -4,7 +4,6 @@ import { Provider } from "./Context";
 const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [itemsQuantity, setItemsQuantity] = useState(0);
-
   const addItem = (item, quantity) => {
     let newArray = cartItems;
     let found = false;
@@ -13,10 +12,10 @@ const CartContextProvider = ({ children }) => {
       if (newArray[i].item.productId === item.productId) {
         if (newArray[i].quantity + quantity > newArray[i].item.maxStock) {
           //En caso de pasarme de la cantidad máxima permitida asigno el máximo valor posible viendo de no pasar el maxStock.
-          newArray[i].quantity = newArray[i].item.maxStock;
           setItemsQuantity(
-            itemsQuantity + newArray[i].item.maxStock - newArray[i].quantity //Le sumo la cantidad que estoy agregando para no pasarme del máximo.
+            itemsQuantity + (newArray[i].item.maxStock - newArray[i].quantity) //Le sumo la cantidad que estoy agregando para no pasarme del máximo.
           );
+          newArray[i].quantity = newArray[i].item.maxStock;
         } else {
           newArray[i].quantity = newArray[i].quantity + quantity; //En caso de que ya haya un item dentro del carrito, le sumo la cantidad nueva deseada.
           setItemsQuantity(itemsQuantity + quantity);
@@ -63,7 +62,6 @@ const CartContextProvider = ({ children }) => {
     });
     return toReturn;
   };
-
   return (
     <Provider
       value={{
