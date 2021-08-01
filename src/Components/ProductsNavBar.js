@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const StyledTab = styled(Tabs)`
   &:focus {
     background-color: red;
@@ -17,7 +17,17 @@ const StyledTab = styled(Tabs)`
 `;
 
 const ProductNavBar = (props) => {
-  const [value, setValue] = useState(0);
+  const { categoryID } = useParams();
+  const mapNavBar = {
+    todo: 0,
+    remeras: 1,
+    pantalones: 2,
+    camperas: 3,
+    calzado: 4,
+    buzos: 5,
+  };
+  const [value, setValue] = useState(mapNavBar[categoryID]);
+
   const handleClick = (elem) => {
     setValue(elem);
   };

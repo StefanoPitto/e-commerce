@@ -32,7 +32,6 @@ const ItemListContainer = (props) => {
       const query = await collection.get();
       let newArray = [];
       query.forEach((document) => {
-        console.log(document.data());
         if (
           categoryID === "todo" ||
           document.data().productType === categoryID
