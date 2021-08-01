@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Context from "./Context";
 import styled from "styled-components";
 import { Card, Button } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
 const StyledCard = styled(Card)`
   max-width: 1200px;
   margin: 0 auto;
@@ -40,16 +40,20 @@ const StyledButton = styled(Button)`
   margin-left: 20px;
 `;
 
-const StyledHeadline = styled.h1`
-  text-align: center;
-`;
-
 const StyledDiv = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid gray;
+`;
+
+const EmptyCartStyledDiv = styled.div`
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 const Cart = () => {
@@ -98,7 +102,12 @@ const Cart = () => {
           <StyledButton variant="contained">Finalizar Compra</StyledButton>
         </StyledCard>
       ) : (
-        <StyledHeadline>Aún no tenes productos en tu carrito.</StyledHeadline>
+        <EmptyCartStyledDiv>
+          <h1>Aún no tenes productos en tu carrito.</h1>
+          <Link to="/home">
+            <Button variant="contained">Volver al inicio</Button>
+          </Link>
+        </EmptyCartStyledDiv>
       )}
     </>
   );

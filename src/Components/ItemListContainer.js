@@ -4,6 +4,7 @@ import ItemList from "./ItemList";
 import { LinearProgress } from "@material-ui/core";
 import ProductNavBar from "./ProductsNavBar";
 import { useParams } from "react-router-dom";
+import { getFirestore } from "../Firebase";
 
 const ItemContainer = styled.div`
   max-width: 900px;
@@ -26,19 +27,22 @@ const ItemListContainer = (props) => {
   const [products, setProducts] = useState();
   useEffect(() => {
     const getProducts = async () => {
-      let productos = await fetch("/json/products.json");
-      let responseProducts = await productos.json();
-      if (categoryID !== "todo") {
-        let newArray = responseProducts.filter(
-          (product) => product.productType === categoryID
-        );
-        setProducts(newArray);
-      } else {
-        setProducts(responseProducts);
-      }
+      const firestore = getFirestore();
+      const collection = await firestore.collection("products");
+      const query = await collection.get();
+      let newArray = [];
+      query.forEach((document) => {
+        console.log(document.data());
+        if (
+          categoryID === "todo" ||
+          document.data().productType === categoryID
+        ) {
+          newArray.push(document.data());
+        }
+      });
+      setProducts(newArray);
     };
-    let timer = setTimeout(() => getProducts(), 500);
-    return () => clearInterval(timer);
+    getProducts();
   }, [categoryID]);
   return (
     <>

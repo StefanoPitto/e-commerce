@@ -3,6 +3,7 @@ import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router-dom";
 import { LinearProgress } from "@material-ui/core";
 import styled from "styled-components";
+import { getFirestore } from "../Firebase";
 
 const Loading = styled(LinearProgress)`
   width: 100vw;
@@ -16,19 +17,17 @@ const ItemDetailContainer = (props) => {
 
   useEffect(() => {
     const getItem = async () => {
-      let products = await fetch("/json/products.json");
-      let data = await products.json();
-      let found = false;
-      for (let i = 0; i < data.length && !found; i++) {
-        if (data[i].productId === itemID) {
-          setItem(data[i]);
-          found = true;
+      const firestore = getFirestore();
+      const collection = await firestore.collection("products");
+      const query = await collection.get();
+      query.forEach((document) => {
+        if (document.data().productId === itemID) {
+          setItem(document.data());
+          return;
         }
-      }
+      });
     };
-
-    let timer = setTimeout(() => getItem(), 2000);
-    return () => clearInterval(timer);
+    getItem();
   }, [itemID]);
 
   return <>{item === undefined ? <Loading /> : <ItemDetail info={item} />}</>;
