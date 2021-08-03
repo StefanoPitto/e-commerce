@@ -74,7 +74,6 @@ const ItemDetail = (props) => {
       addItem({ ...props.info }, counter); //Envío toda la información del item y la cantidad que deseo agregar.
     }
   };
-
   return (
     <StyledContainer>
       <ImageDiv>

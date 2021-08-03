@@ -42,8 +42,6 @@ const CartContextProvider = ({ children }) => {
       }
     }
     setCartItems(newArray);
-    console.log(cartItems);
-    console.log(cartItems.length);
   };
 
   const clearCart = () => {

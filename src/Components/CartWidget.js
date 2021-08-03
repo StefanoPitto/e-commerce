@@ -4,18 +4,14 @@ import { FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Context from "./Context";
 const CartContainer = styled.div`
-  padding: 0 2em;
+  padding: 0.55em 0.5em;
+  margin-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
+
   span {
-    font-size: 10px;
-    top: -1px;
-    position: relative;
-    left: -15px;
+    font-size: 14px;
   }
 `;
 const CartWidget = () => {

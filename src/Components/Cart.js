@@ -3,9 +3,10 @@ import Context from "./Context";
 import styled from "styled-components";
 import { Card, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+
 const StyledCard = styled(Card)`
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 40px auto;
   padding: 10px 20px;
   text-align: center;
 `;
@@ -19,6 +20,7 @@ const ProductContainer = styled.div`
   img {
     width: 100px;
     height: 100px;
+    object-fit: contain;
   }
   p {
     max-width: 100px;
@@ -72,7 +74,7 @@ const Cart = () => {
                   alt={product.item.productName}
                 />
                 <p>{product.item.productName}</p>
-                <p>{product.quantity}</p>
+                <p>Cantidad: {product.quantity}</p>
                 <p>${product.quantity * product.item.productPrice}</p>
                 <RemoveButton
                   variant="contained"

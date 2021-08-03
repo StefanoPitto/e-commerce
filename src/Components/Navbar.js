@@ -8,8 +8,8 @@ const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: transparent;
+  color: #000000;
   a {
     text-decoration: none;
     color: inherit;
@@ -24,12 +24,34 @@ const ItemsContainer = styled.div`
 const NavBarItem = styled.div`
   text-align: center;
   font-size: 1.2em;
+  width: fit-content;
   padding: 0.4em 1.7em;
   height: 100%;
-  min-width: 205px;
   &:hover {
-    background-color: rgba(116, 127, 141, 0.08);
     cursor: pointer;
+  }
+  p {
+    position: relative;
+    padding: 4px 0;
+    transition: all 0.5s ease-out;
+  }
+
+  p:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0, 0.35, 0.93, 0.61);
+  }
+
+  p:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 `;
 
@@ -39,6 +61,9 @@ const StyledDiv = styled.div`
   svg {
     width: 64px;
     margin-left: 30px;
+  }
+  svg g {
+    fill: #000000;
   }
 `;
 

@@ -34,24 +34,43 @@ const ProductNavBar = (props) => {
 
   return (
     <StyledTab value={value} indicatorColor="primary" textColor="primary">
-      <Link to="/products/todo">
-        <Tab label="Todo" onClick={() => handleClick(0, "todo")} />
-      </Link>
-      <Link to="/products/remeras">
-        <Tab onClick={() => handleClick(1)} label="Remeras" />
-      </Link>
-      <Link to="/products/pantalones">
-        <Tab onClick={() => handleClick(2)} label="Pantalones" />
-      </Link>
-      <Link to="/products/camperas">
-        <Tab onClick={() => handleClick(3)} label="Camperas" />
-      </Link>
-      <Link to="/products/calzado">
-        <Tab onClick={() => handleClick(4)} label="Calzado" />
-      </Link>
-      <Link to="/products/buzos">
-        <Tab onClick={() => handleClick(5)} label="Buzos" />
-      </Link>
+      <Tab
+        component={Link}
+        to={"/products/todo"}
+        label="Todo"
+        onClick={() => handleClick(0, "todo")}
+      />
+
+      <Tab
+        component={Link}
+        to={"/products/remeras"}
+        onClick={() => handleClick(1)}
+        label="Remeras"
+      />
+      <Tab
+        component={Link}
+        to={"/products/pantalones"}
+        onClick={() => handleClick(2)}
+        label="Pantalones"
+      />
+      <Tab
+        component={Link}
+        to={"/products/camperas"}
+        onClick={() => handleClick(3)}
+        label="Camperas"
+      />
+      <Tab
+        component={Link}
+        to={"/products/calzado"}
+        onClick={() => handleClick(4)}
+        label="Calzado"
+      />
+      <Tab
+        component={Link}
+        to={"/products/buzos"}
+        onClick={() => handleClick(5)}
+        label="Buzos"
+      />
     </StyledTab>
   );
 };
