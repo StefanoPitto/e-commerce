@@ -54,11 +54,10 @@ const CartContextProvider = ({ children }) => {
   };
 
   const getTotalCost = () => {
-    let toReturn = 0;
-    cartItems.forEach((element) => {
-      toReturn = toReturn + element.quantity * element.item.productPrice;
-    });
-    return toReturn;
+    let result = cartItems.reduce((total, current) => {
+      return total + current.quantity * current.item.productPrice;
+    }, 0);
+    return result;
   };
   return (
     <Provider

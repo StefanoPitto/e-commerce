@@ -84,7 +84,12 @@ const ItemDetail = (props) => {
         <p>{props.info.productDescription}</p>
         <p>$ {props.info.productPrice}</p>
         <ItemCount onAdd={increase} onReduce={decrease} counter={counter} />
-        <Button variant="contained" onClick={addItemToCart}>
+        <Button
+          variant="contained"
+          onClick={() => {
+            addItemToCart();
+          }}
+        >
           Agregar al carrito
         </Button>
         {counter === undefined ? (
