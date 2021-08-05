@@ -8,6 +8,7 @@ import Home from "./Components/Home";
 import CartContextProvider from "./Components/CartContextProvider";
 import Cart from "./Components/Cart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import BuyerForm from "./Components/BuyerForm";
 
 const theme = createTheme({
   palette: {
@@ -28,25 +29,32 @@ const App = () => {
     <CartContextProvider>
       <ThemeProvider theme={theme}>
         <Router>
-          <Navbar />
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/products/:categoryID">
-              <ItemListContainer />
-            </Route>
-            <Route exact path="/products/:categoryID/item/:itemID">
-              <ItemDetailContainer />
-            </Route>
-            <Route exact path="/about-us">
-              <AboutUs />
-            </Route>
-            <Route exact path="/cart">
-              <Cart />
+            <Route exact path="/finalizar-compra">
+              <BuyerForm />
             </Route>
             <Route>
-              <Home />
+              <Navbar />
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route exact path="/products/:categoryID">
+                  <ItemListContainer />
+                </Route>
+                <Route exact path="/products/:categoryID/item/:itemID">
+                  <ItemDetailContainer />
+                </Route>
+                <Route exact path="/about-us">
+                  <AboutUs />
+                </Route>
+                <Route exact path="/cart">
+                  <Cart />
+                </Route>
+                <Route>
+                  <Home />
+                </Route>
+              </Switch>
             </Route>
           </Switch>
         </Router>

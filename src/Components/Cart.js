@@ -101,7 +101,9 @@ const Cart = () => {
           >
             Vaciar Carrito
           </StyledButton>
-          <StyledButton variant="contained">Finalizar Compra</StyledButton>
+          <Link to="/finalizar-compra">
+            <StyledButton variant="contained">Finalizar Compra</StyledButton>
+          </Link>
         </StyledCard>
       ) : (
         <EmptyCartStyledDiv>
