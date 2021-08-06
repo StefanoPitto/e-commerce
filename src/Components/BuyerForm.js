@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import Context from "./Context";
-import { Card, Button } from "@material-ui/core";
+import { Card, Button, Backdrop } from "@material-ui/core";
 import styled from "styled-components";
 import { getFirestore } from "../Firebase";
-
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { GoCheck } from "react-icons/go";
 const StyledCard = styled(Card)`
   margin: 0 auto;
   width: fit-content;
@@ -61,87 +63,56 @@ const ItemContainer = styled.div`
   }
 `;
 
+const StyledBackdrop = styled(Backdrop)`
+  z-index: 1;
+`;
+
+const BackdropCard = styled(Card)`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 400px;
+  min-width: 400px;
+  background-color: #38d338;
+  color: #ffffff;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  Button {
+    margin-top: 50px;
+  }
+`;
+
 const BuyerForm = () => {
-  const [verified, setVerified] = useState({
-    name: false,
-    email: false,
-    tel: false,
-    surname: false,
-  });
-  const [customerInfo, setCustomerInfo] = useState({
-    name: "",
-    email: "",
-    tel: "",
-    surname: "",
-  });
-  const { getTotalCost, getCartItems } = useContext(Context);
+  const { register, handleSubmit } = useForm();
+  const { getTotalCost, getCartItems, clearCart } = useContext(Context);
+  const [open, setOpen] = useState(false);
 
-  const verifyName = (e) => {
-    let regEx = /^[a-z ,.'-]+$/i;
-    let currentState = verified;
-    let currentInfo = customerInfo;
-    currentState.name = regEx.test(e.target.value);
-    currentInfo.name = e.target.value;
-    setVerified(currentState);
-    setCustomerInfo(currentInfo);
-  };
-
-  const verifyEmail = (e) => {
-    let regEx = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-    let currentState = verified;
-    let currentInfo = customerInfo;
-    currentState.email = regEx.test(e.target.value);
-    currentInfo.email = e.target.value;
-    setVerified(currentState);
-    setCustomerInfo(currentInfo);
-  };
-
-  const verifyTel = (e) => {
-    let regEx = /^[0-9]{7,9}$/;
-    let currentState = verified;
-    let currentInfo = customerInfo;
-    currentState.tel = regEx.test(e.target.value);
-    currentInfo.tel = e.target.value;
-    setVerified(currentState);
-    setCustomerInfo(currentInfo);
-  };
-
-  const verifySurname = (e) => {
-    let regEx = /^[a-z ,.'-]+$/i;
-    let currentState = verified;
-    let currentInfo = customerInfo;
-    currentState.surname = regEx.test(e.target.value);
-    currentInfo.surname = e.target.value;
-    setVerified(currentState);
-    setCustomerInfo(currentInfo);
-  };
-
-  const crearOrden = () => {
-    if (verified.name && verified.tel && verified.email && verified.surname) {
-      let actualDate = new Date();
-      let newOrder = {
-        buyer: {
-          name: `${customerInfo.name} ${customerInfo.surname}`,
-          phone: customerInfo.tel,
-          email: customerInfo.email,
-        },
-        items: getCartItems(),
-        date: `${actualDate.getDate()}/${actualDate.getMonth()}/${actualDate.getFullYear()}`,
-        totalCost: getTotalCost(),
-      };
-      const firestore = getFirestore();
-      const collection = firestore.collection("orders");
-      const query = collection.add(newOrder);
-      query
-        .then((resultado) => {
-          console.log("Orden exitosa");
-        })
-        .catch((error) => {
-          console.log("Error al crear la orden");
-        });
-    } else {
-      console.log("No entro");
-    }
+  const createOrder = (data) => {
+    let actualDate = new Date();
+    let newOrder = {
+      buyer: {
+        name: `${data.name} ${data.surname}`,
+        phone: data.tel,
+        email: data.email,
+      },
+      items: getCartItems(),
+      date: `${actualDate.getDate()}/${actualDate.getMonth()}/${actualDate.getFullYear()}`,
+      totalCost: getTotalCost(),
+    };
+    const firestore = getFirestore();
+    const collection = firestore.collection("orders");
+    const query = collection.add(newOrder);
+    query
+      .then((resultado) => {
+        setOpen(true);
+        clearCart();
+      })
+      .catch((error) => {
+        console.log("Error al crear la orden");
+      });
   };
 
   return (
@@ -158,41 +129,59 @@ const BuyerForm = () => {
           })}
         </MapContainer>
         <FormContainer>
-          <form action="">
+          <form onSubmit={handleSubmit(createOrder)}>
             <label htmlFor="name">Nombre</label>
             <input
-              onChange={verifyName}
+              {...register("name", {
+                required: true,
+                pattern: /^[a-z ,.'-]+$/i,
+              })}
               type="text"
               autoComplete="given-name"
               id="name"
             />
             <label htmlFor="surname">Apellido</label>
             <input
-              onChange={verifySurname}
+              {...register("surname", {
+                required: true,
+                pattern: /^[a-z ,.'-]+$/i,
+              })}
               type="text"
               autoComplete="family-name"
               id="surname"
             />
             <label htmlFor="cellphone">Celular</label>
             <input
-              onChange={verifyTel}
+              {...register("tel", { required: true, pattern: /^[0-9]{7,9}$/ })}
               type="text"
               autoComplete="tel"
               id="cellphone"
             />
             <label htmlFor="email">E-mail</label>
             <input
-              onChange={verifyEmail}
+              {...register("email", {
+                required: true,
+                pattern:
+                  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+              })}
               type="text"
               autoComplete="email"
               id="email"
             />
+            <StyledButton type="submit" variant="contained">
+              Finalizar Compra
+            </StyledButton>
           </form>
-          <StyledButton onClick={crearOrden} variant="contained">
-            Finalizar Compra
-          </StyledButton>
         </FormContainer>
       </StyledCard>
+      <StyledBackdrop open={open}>
+        <BackdropCard>
+          <GoCheck size={60} />
+          <Link to="/orders">
+            <Button variant="contained">Mis ordenes</Button>
+          </Link>
+        </BackdropCard>
+      </StyledBackdrop>
     </Container>
   );
 };

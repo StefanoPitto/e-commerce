@@ -9,7 +9,7 @@ import CartContextProvider from "./Components/CartContextProvider";
 import Cart from "./Components/Cart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BuyerForm from "./Components/BuyerForm";
-
+import Orders from "./Components/Orders";
 const theme = createTheme({
   palette: {
     primary: {
@@ -50,6 +50,9 @@ const App = () => {
                 </Route>
                 <Route exact path="/cart">
                   <Cart />
+                </Route>
+                <Route exact path="/orders">
+                  <Orders />
                 </Route>
                 <Route>
                   <Home />
