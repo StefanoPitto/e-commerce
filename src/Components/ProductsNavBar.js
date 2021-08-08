@@ -14,6 +14,7 @@ const StyledTab = styled(Tabs)`
     text-decoration: none;
     color: inherit;
   }
+  margin-bottom: 20px;
 `;
 
 const ProductNavBar = (props) => {

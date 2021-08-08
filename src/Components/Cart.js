@@ -9,6 +9,10 @@ const StyledCard = styled(Card)`
   margin: 40px auto;
   padding: 10px 20px;
   text-align: center;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 const ProductContainer = styled.div`
