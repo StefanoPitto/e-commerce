@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { GoCheck } from "react-icons/go";
 import { RiErrorWarningLine } from "react-icons/ri";
+import { ImCross } from "react-icons/im";
+
 const StyledCard = styled(Card)`
   margin: 0 auto;
   width: fit-content;
@@ -70,7 +72,7 @@ const StyledBackdrop = styled(Backdrop)`
   z-index: 1;
 `;
 
-const BackdropCard = styled(Card)`
+const SuccessBackdropCard = styled(Card)`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -78,6 +80,24 @@ const BackdropCard = styled(Card)`
   min-height: 400px;
   min-width: 400px;
   background-color: #38d338;
+  color: #ffffff;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  Button {
+    margin-top: 50px;
+  }
+`;
+
+const DeniedBackdropCard = styled(Card)`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: 400px;
+  min-width: 400px;
+  background-color: #b52e2e;
   color: #ffffff;
   a {
     text-decoration: none;
@@ -117,7 +137,8 @@ const BuyerForm = () => {
     handleSubmit,
   } = useForm();
   const { getTotalCost, getCartItems, clearCart } = useContext(Context);
-  const [open, setOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [denied, setDenied] = useState(false);
 
   const createOrder = (data) => {
     let actualDate = new Date();
@@ -128,7 +149,9 @@ const BuyerForm = () => {
         email: data.email,
       },
       items: getCartItems(),
-      date: `${actualDate.getDate()}/${actualDate.getMonth()}/${actualDate.getFullYear()}`,
+      date: `${actualDate.getDate()}/${
+        actualDate.getMonth() + 1
+      }/${actualDate.getFullYear()}`,
       totalCost: getTotalCost(),
     };
     const firestore = getFirestore();
@@ -136,11 +159,11 @@ const BuyerForm = () => {
     const query = collection.add(newOrder);
     query
       .then((resultado) => {
-        setOpen(true);
+        setSuccess(true);
         clearCart();
       })
       .catch((error) => {
-        console.log("Error al crear la orden");
+        setDenied(true);
       });
   };
 
@@ -198,14 +221,14 @@ const BuyerForm = () => {
               autoComplete="email"
               placeholder="E-mail"
             />
-            {((errors.name?.type === "required" &&
-              errors.name?.type === "pattern") ||
-              (errors.surname?.type === "required" &&
-                errors.surname?.type === "pattern") ||
-              (errors.tel?.type === "required" &&
-                errors.tel?.type === "required") ||
-              (errors.email?.type === "required" &&
-                errors.email?.type === "pattern")) && (
+            {(errors.name?.type === "required" ||
+              errors.name?.type === "pattern" ||
+              errors.surname?.type === "required" ||
+              errors.surname?.type === "pattern" ||
+              errors.tel?.type === "required" ||
+              errors.tel?.type === "pattern" ||
+              errors.email?.type === "required" ||
+              errors.email?.type === "pattern") && (
               <StyledError>
                 <RiErrorWarningLine size={20} />
                 <p>Verifique todos los campos</p>
@@ -217,13 +240,26 @@ const BuyerForm = () => {
           </form>
         </FormContainer>
       </StyledCard>
-      <StyledBackdrop open={open}>
-        <BackdropCard>
+      <StyledBackdrop open={success}>
+        <SuccessBackdropCard>
           <GoCheck size={60} />
           <Link to="/orders">
             <Button variant="contained">Mis ordenes</Button>
           </Link>
-        </BackdropCard>
+        </SuccessBackdropCard>
+      </StyledBackdrop>
+      <StyledBackdrop open={denied}>
+        <DeniedBackdropCard>
+          <ImCross size={60} />
+          <Button
+            variant="contained"
+            onClick={() => {
+              setDenied(false);
+            }}
+          >
+            Reintentar
+          </Button>
+        </DeniedBackdropCard>
       </StyledBackdrop>
     </Container>
   );

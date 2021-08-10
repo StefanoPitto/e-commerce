@@ -93,6 +93,11 @@ const Navbar = () => {
             <p>Sobre Nosotros</p>
           </Link>
         </NavBarItem>
+        <NavBarItem>
+          <Link to="/login-sign-up">
+            <p>Iniciar/Registrarse</p>
+          </Link>
+        </NavBarItem>
         <CartWidget />
       </ItemsContainer>
     </NavbarContainer>

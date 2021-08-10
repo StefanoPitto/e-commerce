@@ -92,13 +92,9 @@ const ItemDetail = (props) => {
         >
           Agregar al carrito
         </Button>
-        {counter === undefined ? (
-          <></>
-        ) : (
-          <StyledButton variant="contained">
-            <Link to="/cart">Finalizar Compra</Link>
-          </StyledButton>
-        )}
+        <StyledButton variant="contained">
+          <Link to="/cart">Ir al carrito</Link>
+        </StyledButton>
       </InformationDiv>
     </StyledContainer>
   );
