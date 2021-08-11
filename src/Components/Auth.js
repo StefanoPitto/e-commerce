@@ -79,7 +79,6 @@ const Auth = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [formType, setFormType] = useState("login");
 
   const [value, setValue] = useState(0);
 
