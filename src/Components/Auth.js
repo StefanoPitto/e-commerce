@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import "firebase/auth";
-import { getFirestore } from "../Firebase";
 import { Card, Tabs, Tab, Button } from "@material-ui/core";
 import styled from "styled-components";
-
+import { getAuth } from "../Firebase";
 const RegisterForm = styled.div`
   max-width: 354px;
   form {
@@ -68,17 +66,20 @@ const StyledLoginButton = styled(Button)`
 `;
 
 const StyledRegisterButton = styled(Button)`
+  margin: 0 auto;
+  margin-top: 10px;
   margin-bottom: 10px;
+  max-width: 160px;
 `;
 
 const Auth = () => {
+  const firebase = getAuth();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const [formType, setFormType] = useState("login");
-  const createUser = (data) => {};
 
   const [value, setValue] = useState(0);
 
@@ -86,6 +87,32 @@ const Auth = () => {
     setValue(elem);
   };
 
+  const createUser = async (data) => {
+    try {
+      await firebase.createUserWithEmailAndPassword(data.email, data.password);
+      console.log("Cuenta creada");
+    } catch (e) {
+      console.log("Error al crear cuenta");
+    }
+  };
+
+  const logIn = async (data) => {
+    try {
+      await firebase.signInWithEmailAndPassword(data.email, data.password);
+      console.log("Se inició sesión de manera correcta.");
+    } catch (e) {
+      console.log("Error al iniciar sesión.");
+    }
+  };
+
+  const logOut = async () => {
+    try {
+      await firebase.signOut();
+      console.log("Se cerró sesión.");
+    } catch (e) {
+      console.log("Error al desloguearse.");
+    }
+  };
   return (
     <Container>
       <StyledTab value={value} indicatorColor="primary" textColor="primary">
@@ -94,7 +121,7 @@ const Auth = () => {
       </StyledTab>
       {value === 0 ? (
         <RegisterForm>
-          <form onSubmit={handleSubmit(createUser())}>
+          <form onSubmit={handleSubmit(createUser)}>
             <div>
               <input
                 type="name"
@@ -107,7 +134,11 @@ const Auth = () => {
                 {...register("name", { required: true })}
               />
             </div>
-            <input type="date" {...register("age", { required: true })} />
+            <input
+              type="date"
+              placeholder="Fecha de nacimiento"
+              {...register("age", { required: true })}
+            />
             <input
               type="email"
               placeholder="Email"
@@ -126,17 +157,17 @@ const Auth = () => {
                   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
               })}
             />
-            <StyledRegisterButton variant="contained">
+            <StyledRegisterButton type="submit" variant="contained">
               Crear cuenta
             </StyledRegisterButton>
           </form>
         </RegisterForm>
       ) : (
-        <LoginForm>
+        <LoginForm onSubmit={handleSubmit(logIn)}>
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Contraseña" />
           <p>¿Olvidaste tu contraseña?</p>
-          <StyledLoginButton variant="contained">
+          <StyledLoginButton type="submit" variant="contained">
             Iniciar Sesión
           </StyledLoginButton>
         </LoginForm>
