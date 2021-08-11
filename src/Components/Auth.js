@@ -74,11 +74,7 @@ const StyledRegisterButton = styled(Button)`
 
 const Auth = () => {
   const firebase = getAuth();
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [value, setValue] = useState(0);
 
