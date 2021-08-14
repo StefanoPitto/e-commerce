@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Card, Tabs, Tab, Button } from "@material-ui/core";
+import { Card, Tabs, Tab, Button, Backdrop } from "@material-ui/core";
 import styled from "styled-components";
-import { getAuth } from "../Firebase";
+import AuthContext from "./AuthContext";
+import { IoClose } from "react-icons/io5";
 const RegisterForm = styled.div`
   max-width: 354px;
   form {
@@ -72,42 +73,35 @@ const StyledRegisterButton = styled(Button)`
   max-width: 160px;
 `;
 
+const StyledBackdrop = styled(Backdrop)`
+  z-index: 2;
+  div {
+    padding: 80px 40px;
+    position: relative;
+  }
+`;
+
+const IconContainer = styled.span`
+  position: absolute;
+  top: 10%;
+  right: 10%;
+`;
+
 const Auth = () => {
-  const firebase = getAuth();
   const { register, handleSubmit } = useForm();
-
   const [value, setValue] = useState(0);
-
+  const {
+    logIn,
+    createUser,
+    userLogged,
+    showError,
+    message,
+    handleCloseError,
+  } = useContext(AuthContext);
   const handleClick = (elem) => {
     setValue(elem);
   };
 
-  const createUser = async (data) => {
-    try {
-      await firebase.createUserWithEmailAndPassword(data.email, data.password);
-      console.log("Cuenta creada");
-    } catch (e) {
-      console.log("Error al crear cuenta");
-    }
-  };
-
-  const logIn = async (data) => {
-    try {
-      await firebase.signInWithEmailAndPassword(data.email, data.password);
-      console.log("Se inició sesión de manera correcta.");
-    } catch (e) {
-      console.log("Error al iniciar sesión.");
-    }
-  };
-
-  const logOut = async () => {
-    try {
-      await firebase.signOut();
-      console.log("Se cerró sesión.");
-    } catch (e) {
-      console.log("Error al desloguearse.");
-    }
-  };
   return (
     <Container>
       <StyledTab value={value} indicatorColor="primary" textColor="primary">
@@ -167,6 +161,19 @@ const Auth = () => {
           </StyledLoginButton>
         </LoginForm>
       )}
+      <StyledBackdrop open={showError}>
+        <Card>
+          <IconContainer>
+            <IoClose
+              size={30}
+              onClick={() => {
+                handleCloseError();
+              }}
+            />
+          </IconContainer>
+          <p>{message}</p>
+        </Card>
+      </StyledBackdrop>
     </Container>
   );
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Card, Button } from "@material-ui/core";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
-import Context from "./Context";
+import CartContext from "./CartContext";
 
 const StyledContainer = styled(Card)`
   max-width: 900px;
@@ -55,7 +55,7 @@ const StyledButton = styled(Button)`
 `;
 
 const ItemDetail = (props) => {
-  const { addItem } = useContext(Context);
+  const { addItem } = useContext(CartContext);
   const [counter, setCounter] = useState();
   const increase = () => {
     if (counter === undefined) setCounter(1);

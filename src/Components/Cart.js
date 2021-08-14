@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Context from "./Context";
+import CartContext from "./CartContext";
 import styled from "styled-components";
 import { Card, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -64,7 +64,7 @@ const EmptyCartStyledDiv = styled.div`
 
 const Cart = () => {
   const { removeItem, clearCart, getCartItems, itemsQuantity, getTotalCost } =
-    useContext(Context);
+    useContext(CartContext);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import Context from "./Context";
+import CartContext from "./CartContext";
 import { Card, Button, Backdrop } from "@material-ui/core";
 import styled from "styled-components";
 import { getFirestore } from "../Firebase";
@@ -136,7 +136,7 @@ const BuyerForm = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { getTotalCost, getCartItems, clearCart } = useContext(Context);
+  const { getTotalCost, getCartItems, clearCart } = useContext(CartContext);
   const [success, setSuccess] = useState(false);
   const [denied, setDenied] = useState(false);
 

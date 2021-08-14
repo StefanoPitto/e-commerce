@@ -6,11 +6,13 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import AboutUs from "./Components/AboutUs";
 import Home from "./Components/Home";
 import CartContextProvider from "./Components/CartContextProvider";
+import AuthContextProvider from "./Components/AuthContextProvider";
 import Cart from "./Components/Cart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BuyerForm from "./Components/BuyerForm";
 import Orders from "./Components/Orders";
 import Auth from "./Components/Auth";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -28,44 +30,46 @@ const theme = createTheme({
 const App = () => {
   return (
     <CartContextProvider>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            <Route exact path="/finalizar-compra">
-              <BuyerForm />
-            </Route>
-            <Route>
-              <Navbar />
-              <Switch>
-                <Route exact path="/">
-                  <Home />
-                </Route>
-                <Route exact path="/products/:categoryID">
-                  <ItemListContainer />
-                </Route>
-                <Route exact path="/products/:categoryID/item/:itemID">
-                  <ItemDetailContainer />
-                </Route>
-                <Route exact path="/about-us">
-                  <AboutUs />
-                </Route>
-                <Route exact path="/cart">
-                  <Cart />
-                </Route>
-                <Route exact path="/orders">
-                  <Orders />
-                </Route>
-                <Route exact path="/login-sign-up">
-                  <Auth />
-                </Route>
-                <Route>
-                  <Home />
-                </Route>
-              </Switch>
-            </Route>
-          </Switch>
-        </Router>
-      </ThemeProvider>
+      <AuthContextProvider>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Switch>
+              <Route exact path="/finalizar-compra">
+                <BuyerForm />
+              </Route>
+              <Route>
+                <Navbar />
+                <Switch>
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route exact path="/products/:categoryID">
+                    <ItemListContainer />
+                  </Route>
+                  <Route exact path="/products/:categoryID/item/:itemID">
+                    <ItemDetailContainer />
+                  </Route>
+                  <Route exact path="/about-us">
+                    <AboutUs />
+                  </Route>
+                  <Route exact path="/cart">
+                    <Cart />
+                  </Route>
+                  <Route exact path="/orders">
+                    <Orders />
+                  </Route>
+                  <Route exact path="/login-sign-up">
+                    <Auth />
+                  </Route>
+                  <Route>
+                    <Home />
+                  </Route>
+                </Switch>
+              </Route>
+            </Switch>
+          </Router>
+        </ThemeProvider>
+      </AuthContextProvider>
     </CartContextProvider>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Provider } from "./Context";
+import { Provider } from "./CartContext";
 
 const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [itemsQuantity, setItemsQuantity] = useState(0);
+
   const addItem = (item, quantity) => {
     let newArray = cartItems;
     let found = false;

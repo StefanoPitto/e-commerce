@@ -45,7 +45,6 @@ const Orders = () => {
       const query = await collection.get();
       let newArray = [];
       query.forEach((document) => {
-        console.log(document);
         newArray.push({
           orderData: document.data(),
           id: document.id,
