@@ -1,9 +1,8 @@
-import React from "react";
-
+import React, { useContext } from "react";
 import styled from "styled-components";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
-
+import AuthContext from "./AuthContext";
 const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -68,6 +67,8 @@ const StyledDiv = styled.div`
 `;
 
 const Navbar = () => {
+  const { userStatus } = useContext(AuthContext);
+
   return (
     <NavbarContainer>
       <StyledDiv>
@@ -95,7 +96,7 @@ const Navbar = () => {
         </NavBarItem>
         <NavBarItem>
           <Link to="/login-sign-up">
-            <p>Iniciar/Registrarse</p>
+            {userStatus ? <p>Cerrar Sesión</p> : <p>Iniciar/Registrarse</p>}
           </Link>
         </NavBarItem>
         <CartWidget />
