@@ -24,6 +24,8 @@ const StyledDiv = styled.div`
 	align-items: center;
 	flex-direction: column;
 	background-image: url("https://i.imgur.com/lmgnydx.png");
+	background-repeat: no-repeat;
+	background-size: cover;
 `;
 
 const StyledSpan = styled.span`
