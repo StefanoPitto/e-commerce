@@ -3,7 +3,6 @@ import Navbar from "./Components/Navbar";
 import ItemListContainer from "./Components/ItemListContainer";
 import ItemDetailContainer from "./Components/ItemDetailContainer";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import AboutUs from "./Components/AboutUs";
 import Home from "./Components/Home";
 import CartContextProvider from "./Components/CartContextProvider";
 import AuthContextProvider from "./Components/AuthContextProvider";
@@ -14,64 +13,61 @@ import Orders from "./Components/Orders";
 import Auth from "./Components/Auth";
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#000000",
-    },
-    secondary: {
-      main: "#ffffff",
-    },
-    success: {
-      main: "#53d133",
-    },
-  },
+	palette: {
+		primary: {
+			main: "#000000",
+		},
+		secondary: {
+			main: "#ffffff",
+		},
+		success: {
+			main: "#53d133",
+		},
+	},
 });
 
 const App = () => {
-  return (
-    <CartContextProvider>
-      <AuthContextProvider>
-        <ThemeProvider theme={theme}>
-          <Router>
-            <Switch>
-              <Route exact path="/finalizar-compra">
-                <BuyerForm />
-              </Route>
-              <Route>
-                <Navbar />
-                <Switch>
-                  <Route exact path="/">
-                    <Home />
-                  </Route>
-                  <Route exact path="/products/:categoryID">
-                    <ItemListContainer />
-                  </Route>
-                  <Route exact path="/products/:categoryID/item/:itemID">
-                    <ItemDetailContainer />
-                  </Route>
-                  <Route exact path="/about-us">
-                    <AboutUs />
-                  </Route>
-                  <Route exact path="/cart">
-                    <Cart />
-                  </Route>
-                  <Route exact path="/orders">
-                    <Orders />
-                  </Route>
-                  <Route exact path="/login-sign-up">
-                    <Auth />
-                  </Route>
-                  <Route>
-                    <Home />
-                  </Route>
-                </Switch>
-              </Route>
-            </Switch>
-          </Router>
-        </ThemeProvider>
-      </AuthContextProvider>
-    </CartContextProvider>
-  );
+	return (
+		<CartContextProvider>
+			<AuthContextProvider>
+				<ThemeProvider theme={theme}>
+					<Router>
+						<Switch>
+							<Route exact path="/finalizar-compra">
+								<BuyerForm />
+							</Route>
+							<Route exact path="/">
+								<Home />
+							</Route>
+							<Route>
+								<Navbar />
+								<Switch>
+									<Route exact path="/products/:categoryID">
+										<ItemListContainer />
+									</Route>
+									<Route exact path="/products/:categoryID/item/:itemID">
+										<ItemDetailContainer />
+									</Route>
+									<Route exact path="/cart">
+										<Cart />
+									</Route>
+									<Route exact path="/orders">
+										<Orders />
+									</Route>
+									<Route exact path="/login-sign-up">
+										<Auth />
+									</Route>
+									<Route>
+										<Home />
+									</Route>
+								</Switch>
+							</Route>
+						</Switch>
+					</Router>
+				</ThemeProvider>
+			</AuthContextProvider>
+		</CartContextProvider>
+	);
 };
 
 export default App;
