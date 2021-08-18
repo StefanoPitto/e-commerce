@@ -57,9 +57,6 @@ const App = () => {
 									<Route exact path="/login-sign-up">
 										<Auth />
 									</Route>
-									<Route>
-										<Home />
-									</Route>
 								</Switch>
 							</Route>
 						</Switch>
