@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 const StyledDiv = styled.div`
 	padding: 0;
 	margin: 0;
 	width: 99vw;
-	height: 100vh;
+	height: calc(100vh - 79px);
 	text-align: center;
 
 	h1 {
 		font-size: 52px;
 		color: white;
-		margin-bottom: 50px;
+		margin-bottom: 30px;
+	}
+	h2 {
+		font-size: 40px;
+		color: white;
+		margin-top: 20px;
 	}
 
 	a {
@@ -28,22 +32,11 @@ const StyledDiv = styled.div`
 	background-size: cover;
 `;
 
-const StyledSpan = styled.span`
-	background-color: white;
-	color: black;
-	padding: 10px 50px;
-	&:hover {
-		background-color: black;
-		color: white;
-	}
-`;
 const Home = () => {
 	return (
 		<StyledDiv>
-			<h1>Entrena con los mejores productos</h1>
-			<Link to="/products/todo">
-				<StyledSpan>Compra Acá!</StyledSpan>
-			</Link>
+			<h1>Bienvenidos a Lyra Shop!</h1>
+			<h2>Entrena con los mejores productos</h2>
 		</StyledDiv>
 	);
 };

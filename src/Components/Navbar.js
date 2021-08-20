@@ -7,8 +7,8 @@ const NavbarContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: transparent;
-	color: #000000;
+	background-color: black;
+	color: #ffffff;
 	a {
 		text-decoration: none;
 		color: inherit;
@@ -43,7 +43,7 @@ const NavBarItem = styled.div`
 		height: 2px;
 		bottom: 0;
 		left: 0;
-		background-color: #000000;
+		background-color: #ffffff;
 		transform-origin: bottom right;
 		transition: transform 0.3s cubic-bezier(0, 0.35, 0.93, 0.61);
 	}
@@ -62,7 +62,7 @@ const StyledDiv = styled.div`
 		margin-left: 30px;
 	}
 	svg g {
-		fill: #000000;
+		fill: #ffffff;
 	}
 `;
 

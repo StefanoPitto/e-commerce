@@ -36,9 +36,6 @@ const App = () => {
 							<Route exact path="/finalizar-compra">
 								<BuyerForm />
 							</Route>
-							<Route exact path="/">
-								<Home />
-							</Route>
 							<Route>
 								<Navbar />
 								<Switch>
@@ -56,6 +53,9 @@ const App = () => {
 									</Route>
 									<Route exact path="/login-sign-up">
 										<Auth />
+									</Route>
+									<Route>
+										<Home />
 									</Route>
 								</Switch>
 							</Route>
