@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Card, Tabs, Tab, Button, Backdrop } from "@material-ui/core";
 import styled from "styled-components";
 import AuthContext from "./AuthContext";
 import { IoClose } from "react-icons/io5";
+import { useHistory } from "react-router";
 const RegisterForm = styled.div`
 	max-width: 354px;
 	form {
@@ -90,12 +91,12 @@ const IconContainer = styled.span`
 const Auth = () => {
 	const { register, handleSubmit } = useForm();
 	const [value, setValue] = useState(0);
+	const history = useHistory();
 	const {
 		logIn,
 		createUser,
 		userStatus,
 		showError,
-		logOut,
 		message,
 		handleCloseError,
 	} = useContext(AuthContext);
@@ -103,105 +104,98 @@ const Auth = () => {
 		setValue(elem);
 	};
 
+	useEffect(() => {
+		if (userStatus) history.push("/products/todo");
+	}, [userStatus, history]);
+
 	return (
 		<>
-			{userStatus ? (
-				<Button
-					variant="contained"
-					onClick={() => {
-						logOut();
-					}}
-				>
-					Cerrar Sesión
-				</Button>
-			) : (
-				<Container>
-					<StyledTab value={value} indicatorColor="primary" textColor="primary">
-						<Tab label="Registrarse" onClick={() => handleClick(0)} />
-						<Tab label="Iniciar Sesión" onClick={() => handleClick(1)} />
-					</StyledTab>
-					{value === 0 ? (
-						<RegisterForm>
-							<form onSubmit={handleSubmit(createUser)}>
-								<div>
-									<input
-										type="name"
-										placeholder="Nombre"
-										{...register("name", { required: true })}
-									/>
-									<input
-										type="surname"
-										placeholder="Apellido"
-										{...register("surname", { required: true })}
-									/>
-								</div>
+			<Container>
+				<StyledTab value={value} indicatorColor="primary" textColor="primary">
+					<Tab label="Registrarse" onClick={() => handleClick(0)} />
+					<Tab label="Iniciar Sesión" onClick={() => handleClick(1)} />
+				</StyledTab>
+				{value === 0 ? (
+					<RegisterForm>
+						<form onSubmit={handleSubmit(createUser)}>
+							<div>
 								<input
-									type="date"
-									placeholder="Fecha de nacimiento"
-									{...register("age", { required: true })}
+									type="name"
+									placeholder="Nombre"
+									{...register("name", { required: true })}
 								/>
 								<input
-									type="email"
-									placeholder="Email"
-									{...register("email", {
-										required: true,
-										pattern:
-											/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-									})}
+									type="surname"
+									placeholder="Apellido"
+									{...register("surname", { required: true })}
 								/>
-								<input
-									type="password"
-									placeholder="Contraseña"
-									{...register("password", {
-										required: true,
-										pattern:
-											/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
-									})}
-								/>
-								<StyledRegisterButton type="submit" variant="contained">
-									Crear cuenta
-								</StyledRegisterButton>
-							</form>
-						</RegisterForm>
-					) : (
-						<LoginForm>
-							<form onSubmit={handleSubmit(logIn)}>
-								<input
-									type="email"
-									{...register("email", {
-										required: true,
-										pattern:
-											/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-									})}
-									placeholder="Email"
-								/>
-								<input
-									type="password"
-									{...register("password", { required: true })}
-									placeholder="Contraseña"
-								/>
-								<p>¿Olvidaste tu contraseña?</p>
-								<StyledLoginButton type="submit" variant="contained">
-									Iniciar Sesión
-								</StyledLoginButton>
-							</form>
-						</LoginForm>
-					)}
-					<StyledBackdrop open={showError}>
-						<Card>
-							<IconContainer>
-								<IoClose
-									size={30}
-									onClick={() => {
-										handleCloseError();
-									}}
-								/>
-							</IconContainer>
-							<p>{message}</p>
-						</Card>
-					</StyledBackdrop>
-				</Container>
-			)}
+							</div>
+							<input
+								type="date"
+								placeholder="Fecha de nacimiento"
+								{...register("age", { required: true })}
+							/>
+							<input
+								type="email"
+								placeholder="Email"
+								{...register("email", {
+									required: true,
+									pattern:
+										/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+								})}
+							/>
+							<input
+								type="password"
+								placeholder="Contraseña"
+								{...register("password", {
+									required: true,
+									pattern:
+										/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+								})}
+							/>
+							<StyledRegisterButton type="submit" variant="contained">
+								Crear cuenta
+							</StyledRegisterButton>
+						</form>
+					</RegisterForm>
+				) : (
+					<LoginForm>
+						<form onSubmit={handleSubmit(logIn)}>
+							<input
+								type="email"
+								{...register("email", {
+									required: true,
+									pattern:
+										/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+								})}
+								placeholder="Email"
+							/>
+							<input
+								type="password"
+								{...register("password", { required: true })}
+								placeholder="Contraseña"
+							/>
+							<p>¿Olvidaste tu contraseña?</p>
+							<StyledLoginButton type="submit" variant="contained">
+								Iniciar Sesión
+							</StyledLoginButton>
+						</form>
+					</LoginForm>
+				)}
+				<StyledBackdrop open={showError}>
+					<Card>
+						<IconContainer>
+							<IoClose
+								size={30}
+								onClick={() => {
+									handleCloseError();
+								}}
+							/>
+						</IconContainer>
+						<p>{message}</p>
+					</Card>
+				</StyledBackdrop>
+			</Container>
 		</>
 	);
 };

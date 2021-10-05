@@ -6,6 +6,7 @@ const AuthContextProvider = ({ children }) => {
 	const [userStatus, setUserStatus] = useState(false);
 	const [showError, setShowError] = useState(false);
 	const [message, setMessage] = useState("");
+	const [user, setUser] = useState("");
 	const firebase = getAuth();
 
 	const createUser = async (data) => {
@@ -14,6 +15,8 @@ const AuthContextProvider = ({ children }) => {
 			firebase.currentUser.updateProfile({
 				displayName: `${data.name} ${data.surname}`,
 			});
+			setUserStatus(true);
+			setUser(firebase.currentUser);
 			console.log(firebase.currentUser);
 		} catch (e) {
 			setMessage(e.message);
@@ -32,6 +35,7 @@ const AuthContextProvider = ({ children }) => {
 			await firebase.signInWithEmailAndPassword(data.email, data.password);
 			console.log("se logeo");
 			setUserStatus(true);
+			setUser(firebase.currentUser);
 		} catch (e) {
 			setMessage(e.message);
 			setShowError(true);
@@ -43,6 +47,7 @@ const AuthContextProvider = ({ children }) => {
 		try {
 			await firebase.signOut();
 			setUserStatus(false);
+			setUser("");
 			console.log("Se cerró sesión.");
 		} catch (e) {
 			console.log("Error al desloguearse.");
@@ -62,6 +67,7 @@ const AuthContextProvider = ({ children }) => {
 				showError,
 				message,
 				handleCloseError,
+				user,
 			}}
 		>
 			{children}

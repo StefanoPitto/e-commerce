@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BuyerForm from "./Components/BuyerForm";
 import Orders from "./Components/Orders";
 import Auth from "./Components/Auth";
+import UserProfile from "./Components/UserProfile";
 
 const theme = createTheme({
 	palette: {
@@ -35,6 +36,9 @@ const App = () => {
 						<Switch>
 							<Route exact path="/finalizar-compra">
 								<BuyerForm />
+							</Route>
+							<Route exact path="/user-profile">
+								<UserProfile />
 							</Route>
 							<Route>
 								<Navbar />

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import AuthContext from "./AuthContext";
+import { BiUser } from "react-icons/bi";
 const NavbarContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -90,9 +91,15 @@ const Navbar = () => {
 					</Link>
 				</NavBarItem>
 				<NavBarItem>
-					<Link to="/login-sign-up">
-						{userStatus ? <p>Cerrar Sesión</p> : <p>Iniciar/Registrarse</p>}
-					</Link>
+					{userStatus ? (
+						<Link to="/user-profile">
+							<BiUser size={30} />
+						</Link>
+					) : (
+						<Link to="/login-sign-up">
+							<p>Iniciar/Registrarse</p>
+						</Link>
+					)}
 				</NavBarItem>
 				<CartWidget />
 			</ItemsContainer>
